@@ -23,12 +23,10 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 // THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ----------------------------------------------------------------------------
-#include "d2xxdevice.h"
+#include "CommandDispatcher.h"
 
-HARDSID_NAMESPACE_BEGIN
+#include <QVector>
 
-D2XXDevice::D2XXDevice(const FT_DEVICE_LIST_INFO_NODE *device_info)
-{
-    Q_UNUSED(device_info);
+namespace SIDBlaster {
+
 }
-HARDSID_NAMESPACE_END

@@ -23,66 +23,60 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 // THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ----------------------------------------------------------------------------
-#ifndef WINTYPES_H
-#define WINTYPES_H
+#ifndef SIDBLASTER_SIDBLASTERAPI_H_INCLUDED
+#define SIDBLASTER_SIDBLASTERAPI_H_INCLUDED
 
-#include <stdint.h>
-#include <sys/types.h>
+#include "SIDBlasterInterface.h"
 
-// ----------------------------------------------------------------------------
-// the following macro is only for the QtCreator CLANG Parser,
-// to avoid many dirty screen output at right side of editor ...
-//
-// hack by: paule32
-// ----------------------------------------------------------------------------
-#ifndef DONT_DEFINE_QOBJECT
-# define CODING_TIME
-# define Q_OBJECT
-#endif
+namespace SIDBlaster {
 
-#ifdef BOOL
-#undef BOOL
-typedef bool BOOL;
-#endif
+struct CommandParams
+{
+    enum Command { // Keeps the order of command ids the same as the original windows host
+        MinCommand = 0,
+        Reset = MinCommand,
+        Delay,
+        Write,
+        Read,
+        Sync,
+        Flush,
+        Mute,
+        MuteAll,
+        SoftFlush,
+        Lock,
+        MuteLine,
+        Filter = MuteLine,
+        Unlock,
+        OpenDevice,
+        CloseDevice,
+        NOP,
+        MaxCommand
+    }   m_Command;
+    int m_Device;
+    int m_Reg;
+    int m_Data;
+    int m_Cycle;
+    int m_IsBuffered;
 
-typedef unsigned char    UCHAR;
-typedef unsigned short  USHORT;
+    CommandParams(int device = 0, Command cmd = NOP, int reg = 0, int data = 0, int cycle = -1, bool is_buffered = false) :
+    m_Device(device),
+    m_Command(cmd),
+    m_Reg(reg),
+    m_Data(data),
+    m_Cycle(cycle),
+    m_IsBuffered(is_buffered ? 1 : 0)
+    {
+    }
+};
 
-typedef unsigned char * PUCHAR;
-typedef unsigned long * PULONG;
+class CommandDispatcher {
+public:
+    virtual ~CommandDispatcher();
+    virtual int   SendCommand(CommandParams const& cmd) = 0;
+    virtual bool  IsAsync() = 0;
+    virtual void  Initialize() = 0;
+    virtual void  Uninitialize() = 0;
+    virtual int   DeviceCount() = 0;
+};
 
-typedef uint8_t   BYTE;
-typedef uint16_t  WORD;
-typedef uint32_t DWORD;
-typedef uint64_t QWORD;
-
-typedef void      VOID;
-typedef VOID *   PVOID;
-typedef char *   PCHAR;
-
-typedef DWORD HANDLE;
-
-typedef long int * LPVOID;
-typedef long int * LPWORD;
-typedef long int * LPDWORD;
-
-typedef uint32_t ULONG;
-typedef ULONG  * ULONG_PTR;
-
-typedef struct _OVERLAPPED {
-    ULONG_PTR Internal;
-    ULONG_PTR InternalHigh;
-    union {
-        struct {
-            DWORD Offset;
-            DWORD OffsetHigh;
-        } DUMMYSTRUCTNAME;
-        PVOID Pointer;
-    } DUMMYUNIONNAME;
-    HANDLE    hEvent;
-} OVERLAPPED, *LPOVERLAPPED;
-
-#define HARDSID_NAMESPACE_BEGIN namespace D2xxLib {
-#define HARDSID_NAMESPACE_END   }
-
-#endif // WINTYPES_H
+}

@@ -31,6 +31,9 @@ QT      += core gui widgets xml svg network
 DEFINES += QT_DEPRECATED_WARNINGS _GLIBCXX_USE_CXX11_ABI=0 DONT_DEFINE_QOBJECT
 CONFIG  += release c++14
 
+MOC_DIR     = ../tmp/moc
+OBJECTS_DIR = ../tmp/obj
+
 MYHOME   = /usr/local/Qt-5.8.0
 
 TRANSLATIONS = hardsid_de.ts
@@ -62,17 +65,12 @@ QMAKE_CXXFLAGS += \
         -I${MYHOME}/include/QtXmlPatterns
 
 SOURCES += \
-        src/hardsidio.cpp \
-        src/d2xxdevice.cpp \
-        src/manager.cpp \
-        src/main.cpp
+    src/CommandDispatcher.cpp \
+    src/CommandReceiver.cpp
 
 HEADERS += \
-        src/hardsidio.h \
-        src/wintypes.h \
-        src/d2xxdevice.h \
-	src/manager.h \
-        ftd2xx.h
+        src/CommandDispatcher.h \
+    src/CommandReceiver.h
 
 FORMS +=
 
@@ -81,7 +79,8 @@ RESOURCES +=
 DISTFILES += \
         hardsid_de.ts
 
-LIBS += -L. -lvlc -lSDL
-LIBS += -lfontconfig -lfreetype
-LIbS += -lpthread -lgthread-2.0 -lglib-2.0
+LIbS += -lpthread
+
+SUBDIRS += \
+    ../d2xxlib/hardsid.pro
 

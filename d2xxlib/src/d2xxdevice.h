@@ -31,27 +31,28 @@
 
 HARDSID_NAMESPACE_BEGIN
 
-class D2XXDevice : public HardSIDIO
+class D2xxDevice : public HardSIDIO
 {  
 private:
     FT_HANDLE handle;
     FT_STATUS ft_status;
     FT_DEVICE_LIST_INFO_NODE info;
 
-    bool OpenEx(PVOID arg, DWORD flag);
+    bool OpenEx(void* arg, DWORD flag);
     bool OpenByIndex(DWORD index);
     bool OpenBySerialNumber(const char *serial_number);
     bool OpenByDescription(const char *description);
     bool OpenByLocation(DWORD location);
 
 public:
-    explicit D2XXDevice(const FT_DEVICE_LIST_INFO_NODE *device_info);
-    virtual ~D2XXDevice();
+    explicit D2xxDevice(const FT_DEVICE_LIST_INFO_NODE *device_info);
+    virtual ~D2xxDevice();
 
     virtual bool Open();
     virtual void Close(void);
-    virtual DWORD Read(void *buffer, DWORD count);
-    virtual DWORD Write(void *buffer, DWORD count);
+
+    DWORD Read (void *buffer, DWORD count);
+    DWORD Write(void *buffer, DWORD count);
 
     bool IsOpen();
     bool Initialise(void);
@@ -78,7 +79,7 @@ public:
     DWORD Recv(QVector<unsigned char>& data);
 };
 
-typedef QVector<D2XXDevice *> D2XXDevicesList;
+typedef QVector<D2xxDevice *> D2xxDevicesList;
 HARDSID_NAMESPACE_END
 
 #endif // D2XXDEVICE_H

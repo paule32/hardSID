@@ -65,7 +65,7 @@ kernel & user mode
 #endif
 
 typedef PVOID	FT_HANDLE;
-typedef ULONG	FT_STATUS;
+typedef DWORD	FT_STATUS;
 
 //
 // Device status
