@@ -41,7 +41,7 @@ kernel & user mode
 #ifndef FTD2XX_H
 #define FTD2XX_H
 
-#include "wintypes.h"
+#include "src/wintypes.h"
 
 // The following ifdef block is the standard way of creating macros
 // which make exporting from a DLL simpler.  All files within this DLL

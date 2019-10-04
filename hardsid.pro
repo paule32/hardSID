@@ -62,17 +62,17 @@ QMAKE_CXXFLAGS += \
         -I${MYHOME}/include/QtXmlPatterns
 
 SOURCES += \
-        hardsidio.cpp \
-    d2xxdevice.cpp \
-    manager.cpp \
-    main.cpp
+        src/hardsidio.cpp \
+        src/d2xxdevice.cpp \
+        src/manager.cpp \
+        src/main.cpp
 
 HEADERS += \
-        hardsidio.h \
-        wintypes.h \
-    d2xxdevice.h \
-    ftd2xx.h \
-    manager.h
+        src/hardsidio.h \
+        src/wintypes.h \
+        src/d2xxdevice.h \
+	src/manager.h \
+        ftd2xx.h
 
 FORMS +=
 

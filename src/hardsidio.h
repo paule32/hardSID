@@ -31,7 +31,8 @@
 #include <QVector>
 
 #include "wintypes.h"
-#include "ftd2xx.h"
+#include "../ftd2xx.h"
+
 #include <assert.h>
 
 HARDSID_NAMESPACE_BEGIN

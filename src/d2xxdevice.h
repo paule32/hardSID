@@ -26,7 +26,7 @@
 #ifndef D2XXDEVICE_H
 #define D2XXDEVICE_H
 
-#include "ftd2xx.h"
+#include "../ftd2xx.h"
 #include "hardsidio.h"
 
 HARDSID_NAMESPACE_BEGIN
