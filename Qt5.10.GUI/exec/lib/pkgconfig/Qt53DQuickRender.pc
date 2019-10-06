@@ -1,0 +1,14 @@
+prefix=/usr/local/Qt-5.8.0
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+
+Name: Qt5 3DQuickRender
+Description: Qt 3DQuickRender module
+Version: 5.8.0
+Libs: -L${libdir} -lQt53DQuickRender 
+Libs.private: -L/usr/X11R6/lib64 -L/usr/local/Qt-5.8.0/lib -lQt53DRender -L/usr/local/Qt-5.8.0/lib -lQt53DQuick -L/usr/local/Qt-5.8.0/lib -lQt53DCore -lQt5Quick -lQt5Gui -lQt5Qml -lQt5Network -lQt5Concurrent -lQt5Core -lpthread -lGL  
+Cflags: -I${includedir}/Qt3DQuickRender -I${includedir}
+Requires: Qt5Core Qt5Gui Qt5Qml Qt53DCore Qt53DRender Qt53DQuick
+
